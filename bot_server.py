@@ -63,5 +63,6 @@ def webhook():
     return "OK", 200
 
 if __name__ == "__main__":
-    print("Сервер запущен и ждёт сигналы...")
-    app.run(host="0.0.0.0", port=5000)
+    threading.Thread(target=bot.infinity_polling, daemon=True).start()
+    print("Бот и Flask запущены...")
+    app.run(host="0.0.0.0", port=10000)
