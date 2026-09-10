@@ -12,6 +12,9 @@ is_active = False
 active_pair = "ALL"
 active_tf = "ALL"
 
+import os
+TOKEN = os.environ.get("BOT_TOKEN", "8775188168:AAE2cabcMzxWqSRsxS-M6AFLeFRPxxBITxI")
+
 PAIRS = ["AUD/JPY", "CHF/JPY", "EUR/GBP", "EUR/CHF", "EUR/USD", "USD/CAD", "GBP/USD", "AUD/CAD", "USD/CHF", "AUD/USD", "EUR/AUD"]
 TIMEFRAMES = ["M1", "M3", "M5", "M15", "1H", "4H"]
 
