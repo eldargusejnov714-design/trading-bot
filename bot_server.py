@@ -59,9 +59,14 @@ def webhook():
     if not is_active:
         return "Disabled", 200
     data = request.get_data(as_text=True)
-    if ((active_pair == "ALL") or (active_pair in data)) and ((active_tf == "ALL") or (active_tf in data)):
-        bot.send_message(CHAT_ID, f"🚨 СИГНАЛ!\n\n{data}", parse_mode="Markdown")
-    return "OK", 200
+    if "SUPERTREND" in data.upper():
+        bot.send_message(CHAT_ID, f"🚨 Сигнал [SuperTrend] по {active_pair}!\n\n{data}")
+    elif "RSI" in data.upper():
+        bot.send_message(CHAT_ID, f"🚨 Сигнал [RSI] по {active_pair}!\n\n{data}")
+    elif "MACD" in data.upper():
+        bot.send_message(CHAT_ID, f"🚨 Сигнал [MACD] по {active_pair}!\n\n{data}")
+    elif "ICHIMOKU" in data.upper():
+        bot.send_message(CHAT_ID, f"🚨 Сигнал [Ichimoku] по {active_pair}!\n\n{data}")
 
 if __name__ == "__main__":
     threading.Thread(target=bot.infinity_polling, daemon=True).start()
