@@ -59,13 +59,22 @@ def webhook():
     if not is_active:
         return "Disabled", 200
     
-    # Получаем сырые данные от MT5
     data = request.get_data(as_text=True)
     
     if data:
-        # Если пришли любые данные от советника, сразу шлем их тебе в телеграм
-        bot.send_message(CHAT_ID, f"📊 Результат анализа [{active_pair}]:\n\n{data}")
-    
+        upper_data = data.upper()
+        
+        if "SUPERTREND" in upper_data:
+            bot.send_message(CHAT_ID, f"🚨 Сигнал [SuperTrend] по {active_pair}:\n\n{data}")
+        elif "RSI" in upper_data:
+            bot.send_message(CHAT_ID, f"🚨 Сигнал [RSI] по {active_pair}:\n\n{data}")
+        elif "MACD" in upper_data:
+            bot.send_message(CHAT_ID, f"🚨 Сигнал [MACD] по {active_pair}:\n\n{data}")
+        elif "ICHIMOKU" in upper_data:
+            bot.send_message(CHAT_ID, f"🚨 Сигнал [Ichimoku] по {active_pair}:\n\n{data}")
+        else:
+            bot.send_message(CHAT_ID, f"📊 Данные анализа [{active_pair}]:\n\n{data}")
+            
     return "OK", 200
 
 if __name__ == "__main__":
