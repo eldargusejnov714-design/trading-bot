@@ -58,15 +58,15 @@ def webhook():
     global is_active, active_pair, active_tf
     if not is_active:
         return "Disabled", 200
+    
+    # Получаем сырые данные от MT5
     data = request.get_data(as_text=True)
-    if "SUPERTREND" in data.upper():
-        bot.send_message(CHAT_ID, f"🚨 Сигнал [SuperTrend] по {active_pair}!\n\n{data}")
-    elif "RSI" in data.upper():
-        bot.send_message(CHAT_ID, f"🚨 Сигнал [RSI] по {active_pair}!\n\n{data}")
-    elif "MACD" in data.upper():
-        bot.send_message(CHAT_ID, f"🚨 Сигнал [MACD] по {active_pair}!\n\n{data}")
-    elif "ICHIMOKU" in data.upper():
-        bot.send_message(CHAT_ID, f"🚨 Сигнал [Ichimoku] по {active_pair}!\n\n{data}")
+    
+    if data:
+        # Если пришли любые данные от советника, сразу шлем их тебе в телеграм
+        bot.send_message(CHAT_ID, f"📊 Результат анализа [{active_pair}]:\n\n{data}")
+    
+    return "OK", 200
 
 if __name__ == "__main__":
     threading.Thread(target=bot.infinity_polling, daemon=True).start()
