@@ -53,7 +53,8 @@ def handle_text(message):
         active_tf = text
         bot.send_message(message.chat.id, f"⏱ ТФ: {text}", parse_mode="Markdown")
 
-@app.route("/mt5-multi-data", methods=["POST"])def webhook():
+@app.route("/mt5-multi-data", methods=["POST"])
+def webhook():
     global is_active, active_pair, active_tf
     if not is_active:
         return "Disabled", 200
