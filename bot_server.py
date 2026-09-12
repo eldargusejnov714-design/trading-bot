@@ -13,7 +13,7 @@ is_active = False
 active_pair = "ALL"
 active_tf = "ALL"
 
-PAIRS = ["AUD/JPY", "CHF/JPY", "EUR/GBP", "EUR/CHF", "EUR/USD", "USD/CAD", "GBP/USD", "AUD/CAD", "USD/CHF", "AUD/USD", "EUR/AUD"]
+PAIRS = ["AUD/JPY", "CHF/JPY", "EUR/GBP", "EUR/CHF", "EUR/USD", "USD/CAD", "GBP/USD", "AUD/CAD", "USD/CHF", "AUD/USD", "EUR/AUD", "XAU/USD", "BTC/USD"]
 TIMEFRAMES = ["M1", "M3", "M5", "M15", "1H", "4H"]
 
 def get_main_keyboard():
